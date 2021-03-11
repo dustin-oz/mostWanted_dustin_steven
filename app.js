@@ -21,6 +21,7 @@ function searchByName(){
     if(filteredPeople.length > 0){
         for (let i = 0; i < filteredPeople.length; i++){
             document.getElementById("id").innerHTML = filteredPeople[0].tagArray[i]
+            console.log(tagArray[i])
 
         }
      
