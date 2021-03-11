@@ -12,9 +12,12 @@ function searchByName(){
         }
         return false;
     });
-    
+    console.log(filteredPeople[0].id);
     // Rather than console logging, you need to append the filteredPeople to a table.
     if(filteredPeople.length > 0){
+     
+       document.getElementById("id").innerHTML = filteredPeople[0].id
+       
         
     }else{
         console.log('Sorry, looks like there is no one with that name.');
