@@ -1,8 +1,7 @@
 'use strict';
+let tagArray = ["id", "firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation", "parents", "currentSpouse"]
 
 
-let tagArray = ["id", "firstName", "lastName", "gender", "dob", "height", "weight", 
-"eyeColor", "occupation", "parents", "currentSpouse"]
 
 function searchByName(){
     // Grabbing the values from our nameForm form and inputs.
@@ -16,21 +15,33 @@ function searchByName(){
         }
         return false;
     });
-    console.log(filteredPeople[0].id);
+ 
     // Rather than console logging, you need to append the filteredPeople to a table.
     if(filteredPeople.length > 0){
-        for (let i = 0; i < filteredPeople.length; i++){
-            document.getElementById("id").innerHTML = filteredPeople[0].tagArray[i]
-            console.log(tagArray[i])
-
-        }
      
-  
-  
-       
-        
+    
+            document.getElementById("id").innerHTML = filteredPeople[0].id
+            document.getElementById("firstName").innerHTML = filteredPeople[0].firstName
+            document.getElementById("lastName").innerHTML = filteredPeople[0].lastName
+            document.getElementById("gender").innerHTML = filteredPeople[0].gender
+            document.getElementById("dob").innerHTML = filteredPeople[0].dob
+            document.getElementById("height").innerHTML = filteredPeople[0].height
+            document.getElementById("weight").innerHTML = filteredPeople[0].weight
+            document.getElementById("eyeColor").innerHTML = filteredPeople[0].eyeColor
+            document.getElementById("occupation").innerHTML = filteredPeople[0].occupation
+            document.getElementById("parents").innerHTML = filteredPeople[0].parents
+            document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
+    
     }else{
+        document.getElementById("alertUnknown").innerHTML = "This person is not in our records. Try another name."
 
         
     }
 }
+
+document.getElementById("id").innerHTML = filteredPeople[0].id
+document.getElementById("firstName").innerHTML = filteredPeople[0].firstName
+
+
+   
+//comment dksjfasd;fjdsa;lfjsa;d dsfdgdsdfsghgsfghdsfafdsaf
