@@ -87,17 +87,55 @@ function searchByAttribute(){
 
 
 
+let tags = ["id", "firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation", "parents", "currentSpouse"]
 
 
 
+    function GenerateTable() {
+        //Build an array containing Customer records.
+        
+  
+        //Create a HTML Table element.
+        var table = document.createElement("TABLE");
+        table.border = "1";
+ 
+        //Get the count of columns.
+        var columnCount = 1;
+ 
+        //Add the header row.
+        var row = table.insertRow(-1);
+/*         for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = tags[i];
+            row.appendChild(headerCell);
+        } */
+  
+        //Add the data rows.
+        for (var i = 1; i < people.length; i++) {
+            //row = table.insertRow(-1);
+            for (var j = 0; j < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
+               
+            }
+        }
+ 
+        var dvTable = document.getElementById("dvTable");
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
+    }
 
 
 
+///  this above i'm trying to work with from this site
+//   https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
 
 
 
+//   cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
 
 
+let infoArray = [];
 
 
 
