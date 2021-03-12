@@ -24,10 +24,10 @@
     <!--SEARCH USER BY ATTRIBUTES BELOW-->
 
     
-    <form id="attribute">
+  <!--   <form id="attribute">
       <label for="anIDNumber">Search by ID</label><br>
       <input type="text" id="anIDNumber" name="anIDNumber" value="001222887">
-      <input type ="button" onclick="searchByAttribute()" value="Submit">
+      <input type ="button" onclick="searchbyAttribute()" value="Submit">
       
       <label for="anGender"> search by gender </label>
       <input type="text" id="anGender" name="anGender" value="male or female?">
@@ -37,7 +37,7 @@
       <input type="text" id="anDOB" name="anDOB" value="M/D/YYYY">
       <input type="button" onclick="searchByAttribute()" value="Submit">
     </form>
-    
+     -->
     
 
 
@@ -83,6 +83,15 @@
     <input type="button" value="Generate Table" onclick="GenerateTable()" />
     <hr />
     <div id="dvTable"></div>
+
+    <form id="attribute">
+      <label for="anIDNumber">Search by ID</label><br>
+      <input type="text" id="anIDNumber" name="anIDNumber" value="001222887">
+      <input type ="button" onclick="searchID()" value="Submit">
+      </form>
+
+
+    <div id="idTable"> </div>
 
 
 

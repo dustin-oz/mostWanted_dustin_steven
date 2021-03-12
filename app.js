@@ -58,6 +58,28 @@ function searchByAttribute(){
 
 }
 
+function searchID(){
+    let idyNum = document.forms["attribute"]["anIDNumber"].value;
+    var table = document.createElement("TABLE");
+    table.border = "1";
+    var row = table.insertRow(-1);
+
+    for (let i = 0; i < people.length; i++){
+       
+        if (people[i].id == idyNum){
+            var cell = row.insertCell(-1)
+
+            cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
+
+
+        }
+
+    }
+        var idTable = document.getElementById("idTable");
+        idTable.innerHTML = "";
+        idTable.appendChild(table);
+}
+
 
 
 
