@@ -44,28 +44,98 @@ function declareGender(declaredAttributesArray) {
     for (let i = 0; i < declaredAttributesArray.length; i++) {
        
         if (declaredAttributesArray[i].includes("male")){
-           let xGender = people.filter(function (gender){
-               if (gender.gender == "male"){
-                   declaredAttributesArray.pop("male");
+           let yGender = people.filter(function (person){
+               if (person.gender == "male"){
+                  // declaredAttributesArray.pop("male");
                    return true;
-               }
-               else return false;
-
+                }
+                else return false;
            
            })
-            return (xGender);
-            // This returns an array of 9 men.
+            return (yGender);  // This returns an array of 9 men, if user searched men
+        }
+        if (declaredAttributesArray[i].includes("female")){
+            let xGender = people.filter(function (person){
+                if(person.gender == "female"){
+                   // declaredAttributesArray.pop("female");
+                    return true;
+                }
+                else return false;
 
+            })
+            return (xGender); // this returns an array of women, if user specified women
         }
 
     }
 }
 
+function searchEyeColors(declaredAttributesArray){
+    for (let i = 0; i < declaredAttributesArray.length; i++){
+        if (declaredAttributesArray[i].includes("blue")){
+            let blueEyed = menOrWomen.filter(function (person){
+                if(person.eyeColor == "blue"){
+                   // declaredAttributesArray.pop("blue");
+                    return true;
+                }
+                else return false;
+
+            })
+            return (blueEyed);
+            
+        }
+        if(declaredAttributesArray[i].includes("brown")){
+            let brownEyed = menOrWomen.filter(function (person){
+                if (person.eyeColor == "brown"){
+                   // declaredAttributesArray.pop("brown");
+                    return true;
+                }
+                else return false;
+            })
+            return (brownEyed);
+        }
+        if(declaredAttributesArray[i].includes("hazel")){
+            let hazelEyed = menOrWomen.filter(function (person){
+                if (person.eyeColor == "hazel"){
+                   //declaredAttributesArray.pop("hazel");
+                    return true;
+                }
+                else return false;
+            })
+            return (hazelEyed);
+        }
+        if(declaredAttributesArray[i].includes("black")){
+            let blackEyed = menOrWomen.filter(function (person){
+                if (person.eyeColor == "black"){
+                    //declaredAttributesArray.pop("black");
+                    return true;
+                }
+                else return false;
+            })
+            return (blackEyed);
+        }
+        if(declaredAttributesArray[i].includes("green")){
+            let greenEyed = menOrWomen.filter(function (person){
+                if (person.eyeColor == "green"){
+                    //declaredAttributesArray.pop("green");
+                    return true;
+                }
+                else return false;
+            })
+            return (greenEyed);
+        }
+        
+
+    }
+
+}
+
+
 
 
 let declaredAttributesArray = declareAttributes(input);
-let menOrWomen = declareGender(declaredAttributesArray);
-console.log(menOrWomen);
+const menOrWomen = declareGender(declaredAttributesArray);
+const matchingEyes = searchEyeColors(declaredAttributesArray);
+console.log(matchingEyes)
 
    
 
