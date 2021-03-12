@@ -81,6 +81,63 @@ function searchID(){
         idTable.appendChild(table);
 }
 
+// Search by ID END---
+
+// Search by two criteria
+let idnum = 313207561
+let fName = "Mattias"
+let lName = "Madden"
+let xxxY = "male"
+let doB = "2/19/1966"
+let height = 70
+let weight = 110
+let eyes = "blue"
+let job = "assistant"
+let parents = [693243224, 888201200]
+
+let bSearch = "";
+let tSearch = "blue";
+
+function searchTwo(){
+    for (let i = 0; i < people.length; i++){
+        if (bSearch === people[i].id || people[i].firstName || people[i].lastName || people[i].gender || people[i].dob || people[i].height || people[i].weight || people[i].eyeColor || people[i].occupation ){
+            
+            //|| people[i].parents[0] || people[i].parents[1] || people[i].currentSpouse && tSearch === people[i].id || people[i].firstName || people[i].lastName || people[i].gender || people[i].dob || people[i].height || people[i].weight || people[i].eyeColor || people[i].occupation || people[i].parents[0] || people[i].parents[1] || people[i].currentSpouse ){
+         
+                
+                
+          console.log(" ID: "+ people[i].id + "\n " +"First Name: "+ people[i].firstName+"\n "+"Last Name: "+people[i].lastName+"\n "+"Gender: "+people[i].gender+"\n "+"DOB: "+people[i].dob+"\n "+"Height: "+people[i].height+"\n "+"Weight: "+people[i].weight+"\n "+"Eye Color: "+people[i].eyeColor+"\n "+"Occupation: "+people[i].occupation+"\n "+"Parents: "+people[i].parents[0]+", "+people[i].parents[1]+"\n Spouse: "+people[i].currentSpouse);
+
+        }
+        else{
+            console.log("No Match")
+        }
+
+    }
+
+}
+searchTwo();
+
+
+
+
+
+
+
+
+/* function XsearchByTwo(){
+    let i = 0;
+    let j = 0;
+    for (let i = 0; i < people.length; i++){
+        if (people[i].id == idnum && (people[i].firstName == fName || people[i].lastName == lName || people[i].gender == xxxY || people[i].dob == doB || people[i].height == height || people[i].weight == weight || people[i].eyeColor == eyes || people[i].occupation == job || people[i].parents[0] == parents || people[i].parents == parents)){
+            console.log(" ID: "+ people[i].id + "\n " +"First Name: "+ people[i].firstName+"\n "+"Last Name: "+people[i].lastName+"\n "+"Gender: "+people[i].gender+"\n "+"DOB: "+people[i].dob+"\n "+"Height: "+people[i].height+"\n "+"Weight: "+people[i].weight+"\n "+"Eye Color: "+people[i].eyeColor+"\n "+"Occupation: "+people[i].occupation+"\n "+"Parents: "+people[i].parents[0]+", "+people[i].parents[1]+"\n Spouse: "+people[i].currentSpouse);
+        }
+        
+    }
+        
+    
+}
+searchByTwo(); */
 
 
 
