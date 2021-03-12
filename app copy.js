@@ -91,9 +91,12 @@ function searchID(){
 
     function GenerateTable() {
         //Build an array containing Customer records.
+        
+  
         //Create a HTML Table element.
         var table = document.createElement("TABLE");
         table.border = "1";
+ 
         //Get the count of columns.
         var columnCount = 1;
  
@@ -115,6 +118,16 @@ function searchID(){
         dvTable.appendChild(table);
     }
 
+
+
+///  this above i'm trying to work with from this site
+//   https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
+
+
+
+//   cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
+
+
 let infoArray = [];
 
 /// PUT ALL FUNCTIONS BELOW SO THE CODE UP TOP LOOKS BRIEF AND ORDERLY------REDUCE CLUTTER ABOVE------
@@ -133,36 +146,3 @@ function spamFillTable(filteredPeople){
     document.getElementById("parents").innerHTML = filteredPeople[0].parents
     document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
 }
-
-for(let i =0; i < people.length; i++) {
-    var elements = people[i].id;
-    console.log(elements);
-
-} 
-
-for(let i =0; i < people.length; i++) {
-    var elements = people[i].firstName;
-    console.log(elements);
-    
-} 
-for(let i =0; i < people.length; i++) {
-    var elements = people[i].lastName;
-    console.log(elements);
-
-} 
-
-for(let i =0; i < people.length; i++) {
-    var elements = people[i].gender;
-    console.log(elements);
-      
-} 
-
-
-
-
-///  this above i'm trying to work with from this site
-//   https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
-
-
-
-//   cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
