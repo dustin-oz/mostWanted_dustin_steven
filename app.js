@@ -28,7 +28,7 @@ function searchByName(){
        
     }
 }
-
+/* 
 function searchByAttribute(){
     const list = [];
     // Grabbing the values from our nameForm form and inputs.
@@ -58,6 +58,7 @@ function searchByAttribute(){
 
 }
 
+ */
 function searchID(){
     let idyNum = document.forms["attribute"]["anIDNumber"].value;
     var table = document.createElement("TABLE");
@@ -150,17 +151,17 @@ let infoArray = [];
 /// PUT ALL FUNCTIONS BELOW SO THE CODE UP TOP LOOKS BRIEF AND ORDERLY------REDUCE CLUTTER ABOVE------
 
 
-function FillTable(filteredPeople){
-    document.getElementById("id").innerHTML = filteredPeople.id
-    document.getElementById("firstName").innerHTML = filteredPeople.firstName
-    document.getElementById("lastName").innerHTML = filteredPeople.lastName
-    document.getElementById("gender").innerHTML = filteredPeople.gender
-    document.getElementById("dob").innerHTML = filteredPeople.dob
-    document.getElementById("height").innerHTML = filteredPeople.height
-    document.getElementById("weight").innerHTML = filteredPeople.weight
-    document.getElementById("eyeColor").innerHTML = filteredPeople.eyeColor
-    document.getElementById("occupation").innerHTML = filteredPeople.occupation
-    document.getElementById("parents").innerHTML = filteredPeople.parents
-    document.getElementById("currentSpouse").innerHTML = filteredPeople.currentSpouse
+function spamFillTable(filteredPeople){
+    document.getElementById("id").innerHTML = filteredPeople[0].id
+    document.getElementById("firstName").innerHTML = filteredPeople[0].firstName
+    document.getElementById("lastName").innerHTML = filteredPeople[0].lastName
+    document.getElementById("gender").innerHTML = filteredPeople[0].gender
+    document.getElementById("dob").innerHTML = filteredPeople[0].dob
+    document.getElementById("height").innerHTML = filteredPeople[0].height
+    document.getElementById("weight").innerHTML = filteredPeople[0].weight
+    document.getElementById("eyeColor").innerHTML = filteredPeople[0].eyeColor
+    document.getElementById("occupation").innerHTML = filteredPeople[0].occupation
+    document.getElementById("parents").innerHTML = filteredPeople[0].parents
+    document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
 }
 
