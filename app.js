@@ -30,38 +30,65 @@ function searchByName(){
 }
 
 
-let userInput = "Ellen Madden"  //replace the " user input " for anything and test to see what works.
-let filteredPeople = people;
-let input = userInput.toLowerCase();
 
-let declaredAttributesArray = declareAttributes(input);
-filteredPeople = searchByGender(declaredAttributesArray);
-filteredPeople = searchEyeColors(declaredAttributesArray);
-filteredPeople = searchByOccupation(declaredAttributesArray);
-filteredPeople = searchByDOB(declaredAttributesArray);
-filteredPeople = searchByHeight(declaredAttributesArray);
-filteredPeople = searchByWeight(declaredAttributesArray);
-filteredPeople = searchByID(declaredAttributesArray);
-filteredPeople = searchByFirstName(declaredAttributesArray);
-filteredPeople = searchByLastName(declaredAttributesArray);
-console.log(filteredPeople)
-if (filteredPeople.length == 1){
-    spamFillTable(filteredPeople)
-}else GenerateTable();
+function searchByKeyWord(){
 
-
-
-function declareAttributes(userInput){
+    let userInput = document.forms["keyWordForm"]["keyWords"].value  //replace the " user input " for anything and test to see what works.
     
-    let attributes = userInput.split(" ");
-    return attributes;
+    
+    let filteredPeople = people;
+    let declaredAttributesArray = userInput.split(" ");
+    
+
+    declaredAttributesArray = accountForParentsID(declaredAttributesArray, filteredPeople)
+    filteredPeople = searchByGender(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchEyeColors(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByOccupation(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByDOB(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByHeight(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByWeight(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByFirstName(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByLastName(declaredAttributesArray, filteredPeople);
+    filteredPeople = searchByID(declaredAttributesArray, filteredPeople);
+   
+    if (filteredPeople.length > 1){
+        GenerateTable(filteredPeople)
+
+    }
+    else spamFillTable(filteredPeople)
+
 }
 
+    function accountForParentsID(declaredAttributesArray, filteredPeople){
+        let parentArray = [];
+        for (let i = 0; i < declaredAttributesArray.length; i++){
+            
+            for(let j = 17; j < filteredPeople.length; j++){
+                if(declaredAttributesArray[i] == filteredPeople[j].parents[0] || declaredAttributesArray[i] == filteredPeople[j].parents[1]){
+                
+
+                    if (filteredPeople[j].parents.length > 1){
+                        parentArray.push(filteredPeople[j].parents[0]);
+                        parentArray.push(filteredPeople[j].parents[1]);
+
+                    }
+                    else parentArray.push(filteredPeople[j].parents[0]);
+
+                }
+
+
+            }
+        
+        }
+        let attributeAddition = declaredAttributesArray.concat(parentArray);
+        return attributeAddition;
+        
+    
+    }
 
 
 
-
-function searchByGender(declaredAttributesArray) {
+function searchByGender(declaredAttributesArray, filteredPeople) {
     let matchingGender = [];
     for (let i = 0; i < declaredAttributesArray.length; i++) {
         
@@ -79,7 +106,7 @@ function searchByGender(declaredAttributesArray) {
         
 }
 
-function searchEyeColors(declaredAttributesArray){
+function searchEyeColors(declaredAttributesArray, filteredPeople){
     let matchingEyes = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -97,7 +124,7 @@ function searchEyeColors(declaredAttributesArray){
 }
 
 
-function searchByOccupation(declaredAttributesArray){
+function searchByOccupation(declaredAttributesArray, filteredPeople){
     let matchingJobs = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -114,7 +141,7 @@ function searchByOccupation(declaredAttributesArray){
         
 }   
 
-function searchByDOB(declaredAttributesArray){
+function searchByDOB(declaredAttributesArray, filteredPeople){
     let matchingDOB = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -131,7 +158,7 @@ function searchByDOB(declaredAttributesArray){
 
 }
 
-function searchByHeight(declaredAttributesArray){
+function searchByHeight(declaredAttributesArray, filteredPeople){
     let matchingHeight = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -148,7 +175,7 @@ function searchByHeight(declaredAttributesArray){
 
 }
 
-function searchByWeight(declaredAttributesArray){
+function searchByWeight(declaredAttributesArray, filteredPeople){
     let matchingWeight = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -165,7 +192,7 @@ function searchByWeight(declaredAttributesArray){
 
 }
 
-function searchByID(declaredAttributesArray){
+function searchByID(declaredAttributesArray, filteredPeople){
     let matchingID = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -181,7 +208,7 @@ function searchByID(declaredAttributesArray){
     else return matchingID;
 }
 
-function searchByFirstName(declaredAttributesArray){
+function searchByFirstName(declaredAttributesArray, filteredPeople){
     let matchingFName = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -200,7 +227,7 @@ function searchByFirstName(declaredAttributesArray){
     else return matchingFName;
 }
 
-function searchByLastName(declaredAttributesArray){
+function searchByLastName(declaredAttributesArray, filteredPeople){
     let matchingLName = [];
     for (let i = 0; i < declaredAttributesArray.length; i++){
 
@@ -255,7 +282,7 @@ if (filteredPeople.length == 1){
 
 
 
-    function GenerateTable() {
+    function GenerateTable(filteredPeople) {
         //Build an array containing Customer records.
         //Create a HTML Table element.
         var table = document.createElement("TABLE");
