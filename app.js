@@ -29,15 +29,31 @@ function searchByName(){
     }
 }
 
-let userInput = "female"
-let hiphipArray = [];
 
+let userInput = "Ellen Madden"  //replace the " user input " for anything and test to see what works.
 let filteredPeople = people;
 let input = userInput.toLowerCase();
 
+let declaredAttributesArray = declareAttributes(input);
+filteredPeople = searchByGender(declaredAttributesArray);
+filteredPeople = searchEyeColors(declaredAttributesArray);
+filteredPeople = searchByOccupation(declaredAttributesArray);
+filteredPeople = searchByDOB(declaredAttributesArray);
+filteredPeople = searchByHeight(declaredAttributesArray);
+filteredPeople = searchByWeight(declaredAttributesArray);
+filteredPeople = searchByID(declaredAttributesArray);
+filteredPeople = searchByFirstName(declaredAttributesArray);
+filteredPeople = searchByLastName(declaredAttributesArray);
+console.log(filteredPeople)
+if (filteredPeople.length == 1){
+    spamFillTable(filteredPeople)
+}else GenerateTable();
 
-function declareAttributes(input){
-    let attributes = input.split(" ")
+
+
+function declareAttributes(userInput){
+    
+    let attributes = userInput.split(" ");
     return attributes;
 }
 
@@ -55,7 +71,7 @@ function searchByGender(declaredAttributesArray) {
             }
         }
     }
-    if (matchingGender.lenght < 1){
+    if (matchingGender.length < 1){
         return filteredPeople;
     }
     else return matchingGender;
@@ -165,10 +181,50 @@ function searchByID(declaredAttributesArray){
     else return matchingID;
 }
 
+function searchByFirstName(declaredAttributesArray){
+    let matchingFName = [];
+    for (let i = 0; i < declaredAttributesArray.length; i++){
+
+        for(let j = 0; j < filteredPeople.length; j++){
+            
+            if (declaredAttributesArray[i] == filteredPeople[j].firstName.toLowerCase()){
+        
+                matchingFName.push(filteredPeople[j])
+            }
+            else filteredPeople[j].firstName[0].toUpperCase();
+        }
+    }
+    if (matchingFName < 1){
+        return filteredPeople;
+    }
+    else return matchingFName;
+}
+
+function searchByLastName(declaredAttributesArray){
+    let matchingLName = [];
+    for (let i = 0; i < declaredAttributesArray.length; i++){
+
+        for(let j = 0; j < filteredPeople.length; j++){
+            
+            if (declaredAttributesArray[i] == filteredPeople[j].lastName.toLowerCase()){
+        
+                matchingLName.push(filteredPeople[j])
+            }
+            else filteredPeople[j].firstName[0].toUpperCase();
+        }
+    }
+    if (matchingLName < 1){
+        return filteredPeople;
+    }
+    else return matchingLName;
+}
 
 
 
-let declaredAttributesArray = declareAttributes(input);
+
+
+
+/* let declaredAttributesArray = declareAttributes(input);
 filteredPeople = searchByGender(declaredAttributesArray);
 filteredPeople = searchEyeColors(declaredAttributesArray);
 filteredPeople = searchByOccupation(declaredAttributesArray);
@@ -176,10 +232,12 @@ filteredPeople = searchByDOB(declaredAttributesArray);
 filteredPeople = searchByHeight(declaredAttributesArray);
 filteredPeople = searchByWeight(declaredAttributesArray);
 filteredPeople = searchByID(declaredAttributesArray);
+filteredPeople = searchByFirstName(declaredAttributesArray);
+filteredPeople = searchByLastName(declaredAttributesArray);
 console.log(filteredPeople)
 if (filteredPeople.length == 1){
     spamFillTable(filteredPeople)
-}else GenerateTable();
+}else GenerateTable(); */
 
 
 
@@ -209,7 +267,7 @@ if (filteredPeople.length == 1){
         var row = table.insertRow(-1);
   
         //Add the data rows.
-        for (var i = 1; i < filteredPeople.length; i++) {
+        for (var i = 0; i < filteredPeople.length; i++) {
             //row = table.insertRow(-1);
             for (var j = 0; j < columnCount; j++) {
                 var cell = row.insertCell(-1);

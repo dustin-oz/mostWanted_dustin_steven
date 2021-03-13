@@ -24,21 +24,14 @@
 
     <!--SEARCH USER BY ATTRIBUTES BELOW-->
 
+    <form id="keyWordForm">
+      <label for="keyWords">Search by keywords DO NOT USE COMMAS OR COLONS ONLY SPACES</label><br>
+      <input type="text" id="keyWords" name="keyWords" value=""><br><br>
+      <input type="button" value="Submit">
+  </form> 
+
     
-  <!--   <form id="attribute">
-      <label for="anIDNumber">Search by ID</label><br>
-      <input type="text" id="anIDNumber" name="anIDNumber" value="001222887">
-      <input type ="button" onclick="searchbyAttribute()" value="Submit">
-      
-      <label for="anGender"> search by gender </label>
-      <input type="text" id="anGender" name="anGender" value="male or female?">
-      <input type="button" onclick="searchByAttribute()" value="Submit">
-      
-      <label for="anDOB"> Search by DOB: M/D/YYYY</label>
-      <input type="text" id="anDOB" name="anDOB" value="M/D/YYYY">
-      <input type="button" onclick="searchByAttribute()" value="Submit">
-    </form>
-     -->
+
 
 
     <!-- END-->
@@ -80,23 +73,9 @@
     <div id="dvTable"></div>
     <!--END-->
 
-    <!--self generating table to search individual by their ID-->
-    <form id="attribute">
-      <label for="anIDNumber">Search by ID</label><br>
-      <input type="text" id="anIDNumber" name="anIDNumber" value="001222887">
-      <input type ="button" onclick="searchID()" value="Submit">
-      </form>
-    <div id="idTable"> </div>
-   <!--END-->
-
-
-  
 
 
 
-
-
-  
 
 
     <!--I put bootstrap js source code above our own source code, I think that is proper order.-->
