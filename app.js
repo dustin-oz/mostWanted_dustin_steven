@@ -3,147 +3,94 @@
 
 
 
-function searchByName(){
-    // Grabbing the values from our nameForm form and inputs.
-    let firstNameInput = document.forms['nameForm']['fname'].value;
-    let lastNameInput = document.forms['nameForm']['lname'].value;
+    function searchByName(){
+        // Grabbing the values from our nameForm form and inputs.
+        let firstNameInput = document.forms['nameForm']['fname'].value;
+        let lastNameInput = document.forms['nameForm']['lname'].value;
 
-    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
-    let fPeople = people.filter(function (person) {
-        if(person.firstName === firstNameInput && person.lastName === lastNameInput){
-            return true;
-        }
-        return false;
-    });
- 
-    // Rather than console logging, you need to append the filteredPeople to a table.
-    if(filteredPeople.length > 0){
-
-        spamFillTable(fPeople);
-        document.getElementById("alertUnknown").innerHTML = "We found..."
+        // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+        let fPeople = people.filter(function (person) {
+            if(person.firstName === firstNameInput && person.lastName === lastNameInput){
+                return true;
+            }
+            return false;
+        });
     
-    }else{
-        document.getElementById("alertUnknown").innerHTML = "This person is not in our records. Try another name."
+        // Rather than console logging, you need to append the filteredPeople to a table.
+        if(filteredPeople.length > 0){
 
-       
+            spamFillTable(fPeople);
+            document.getElementById("alertUnknown").innerHTML = "We found..."
+        
+        }else{
+            document.getElementById("alertUnknown").innerHTML = "This person is not in our records. Try another name."
+
+        
+        }
     }
-}
 
-let userInput = "landScaper Gender male Eye Color brown"
-let hiphipArray = [];
+    let userInput = "landScaper Gender male Eye Color brown"
+    let hiphipArray = [];
 
-let input = userInput.toLowerCase();
+    let input = userInput.toLowerCase();
 
 
-function declareAttributes(input){
-    let attributes = input.split(" ")
-    return attributes;
- }
+    function declareAttributes(input){
+        let attributes = input.split(" ")
+        return attributes;
+    }
  
 
 
 
 
-function declareGender(declaredAttributesArray) {
-    for (let i = 0; i < declaredAttributesArray.length; i++) {
-       
-        if (declaredAttributesArray[i].includes("male")){
-           let yGender = people.filter(function (person){
-               if (person.gender == "male"){
-                   //declaredAttributesArray.pop("male");
-                   return true;
-                }
-                else return false;
-           
-           })
-            return (yGender);  // This returns an array of 9 men, if user searched men
-        }
-        if (declaredAttributesArray[i].includes("female")){
-            let xGender = people.filter(function (person){
-                if(person.gender == "female"){
-                   // declaredAttributesArray.pop("female");
-                    return true;
-                }
-                else return false;
-
-            })
-            return (xGender); // this returns an array of women, if user specified women
-        }
-
-    }
-}
-
-
-
-
-
-
-
-
-function searchEyeColors(declaredAttributesArray){
-    for (let i = 0; i < declaredAttributesArray.length; i++){
-        if (declaredAttributesArray[i].includes("blue")){
-            let blueEyed = filteredPeople.filter(function (person){
-                if(person.eyeColor == "blue"){
-                   // declaredAttributesArray.pop("blue");
-                    return true;
-                }
-                else return false;
-
-            })
-            return (blueEyed);
-            
-        }
-        if(declaredAttributesArray[i].includes("brown")){
-            let brownEyed = filteredPeople.filter(function (person){
-                if (person.eyeColor == "brown"){
-                    // declaredAttributesArray.pop("brown");
-                    return true;
-                }
-                else return false;
-            })
-            return (brownEyed);
-        }
-        if(declaredAttributesArray[i].includes("hazel")){
-            let hazelEyed = filteredPeople.filter(function (person){
-                if (person.eyeColor == "hazel"){
-                   //declaredAttributesArray.pop("hazel");
-                    return true;
-                }
-                else return false;
-            })
-            return (hazelEyed);
-        }
-        if(declaredAttributesArray[i].includes("black")){
-            let blackEyed = filteredPeople.filter(function (person){
-                if (person.eyeColor == "black"){
-                    //declaredAttributesArray.pop("black");
-                    return true;
-                }
-                else return false;
-            })
-            return (blackEyed);
-        }
-        if(declaredAttributesArray[i].includes("green")){
-            let greenEyed = filteredPeople.filter(function (person){
-                if (person.eyeColor == "green"){
-                    //declaredAttributesArray.pop("green");
-                    return true;
-                }
-                else return false;
-            })
-            return (greenEyed);
-        }
+    function declareGender(declaredAttributesArray) {
+        for (let i = 0; i < declaredAttributesArray.length; i++) {
         
+            if (declaredAttributesArray[i].includes("male")){
+            let yGender = people.filter(function (person){
+                if (person.gender == "male"){
+                    //declaredAttributesArray.pop("male");
+                    return true;
+                    }
+                    else return false;
+            
+            })
+                return (yGender);  // This returns an array of 9 men, if user searched men
+            }
+            if (declaredAttributesArray[i].includes("female")){
+                let xGender = people.filter(function (person){
+                    if(person.gender == "female"){
+                    // declaredAttributesArray.pop("female");
+                        return true;
+                    }
+                    else return false;
 
+                })
+                return (xGender); // this returns an array of women, if user specified women
+            }
+
+        }
     }
 
-}
+    function searchEyeColors(declaredAttributesArray){
+        let matchingEyes = [];
+        for (let i = 0; i < declaredAttributesArray.length; i++){
+
+            for (let j = 0; j < filteredPeople.length; j++) {
+                if (declaredAttributesArray[i] == filteredPeople[j].eyeColor){
+                    matchingEyes.push(filteredPeople[j]);
+                
+                }
+            }
+        }
+        if (matchingEyes.length < 1){
+            return filteredPeople;
+        }
+        else return matchingEyes;
+    }
 
 
-/// Dang, I think I just realized I could have done a nested forloop..
- //     if(declaredAttributesArray[i].includes(filteredPeople[j].occupation))
-/// will work on that tomorrow...
     function searchByOccupation(declaredAttributesArray){
         let matchingJobs = [];
         for (let i = 0; i < declaredAttributesArray.length; i++){
@@ -154,18 +101,40 @@ function searchEyeColors(declaredAttributesArray){
 
             }
         }   
-        return matchingJobs;    
+        if (matchingJobs.length < 1){
+            return filteredPeople;
+        }
+        else return matchingJobs;
             
     }   
 
-let declaredAttributesArray = declareAttributes(input);
-let filteredPeople = declareGender(declaredAttributesArray);
-filteredPeople = searchEyeColors(declaredAttributesArray);
-filteredPeople = searchByOccupation(declaredAttributesArray);
-console.log(filteredPeople)
-if (filteredPeople.length == 1){
-    spamFillTable(filteredPeople)
-}
+    function searchByDOB(declaredAttributesArray){
+        let matchingDOB = [];
+        for (let i = 0; i < declaredAttributesArray.length; i++){
+
+            for(let j = 0; j < filteredPeople.length; j++)
+            if (declaredAttributesArray[i] == filteredPeople[j].dob){
+                matchingDOB.push(filteredPeople[j])
+                
+            }
+        }
+        if (matchingDOB.length < 1){
+            return filteredPeople;
+        }
+        else return matchingDOB;
+
+    }
+
+
+    let declaredAttributesArray = declareAttributes(input);
+    let filteredPeople = declareGender(declaredAttributesArray);
+    filteredPeople = searchEyeColors(declaredAttributesArray);
+    filteredPeople = searchByOccupation(declaredAttributesArray);
+    filteredPeople = searchByDOB(declaredAttributesArray);
+    console.log(filteredPeople)
+    if (filteredPeople.length == 1){
+        spamFillTable(filteredPeople)
+    }
 
    
 
@@ -183,10 +152,8 @@ function searchByAttribute(){
     let idyNum = document.forms["attribute"]["anIDNumber"].value;
     let DOB = document.forms["attribute"]["anDOB"].value;
     let aGender = document.forms["attribute"]["anGender"].value;
-
     for(let i = 0; i < people.length; i++){
         console.log(people[i])
-
         if (people[i].id == idyNum){
             FillTable(people[i])
             break;
@@ -199,13 +166,9 @@ function searchByAttribute(){
             list.push(people[i])
             
         }
-
-
     }
     console.log(list)
-
 }
-
  */
 function searchID(){
     let idyNum = document.forms["attribute"]["anIDNumber"].value;
@@ -258,11 +221,11 @@ function searchID(){
         var row = table.insertRow(-1);
   
         //Add the data rows.
-        for (var i = 1; i < people.length; i++) {
+        for (var i = 1; i < filteredPeople.length; i++) {
             //row = table.insertRow(-1);
             for (var j = 0; j < columnCount; j++) {
                 var cell = row.insertCell(-1);
-                cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
+                cell.innerHTML = filteredPeople[i].id + " " + filteredPeople[i].firstName+" "+filteredPeople[i].lastName+" "+filteredPeople[i].gender+" "+filteredPeople[i].dob+" "+filteredPeople[i].height+" "+filteredPeople[i].weight+" "+filteredPeople[i].eyeColor+" "+filteredPeople[i].occupation+" "+filteredPeople[i].parents+" "+filteredPeople[i].currentSpouse
                
             }
         }
@@ -294,12 +257,10 @@ function spamFillTable(filteredPeople){
 /* for(let i =0; i < people.length; i++) {
     var elements = people[i].id;
     console.log(elements);
-
 } 
  */
 
 /* Working Examples 
-
 for(let i =0; i < people.length; i++) {
     var elements = people[i].firstName;
     console.log(elements);
@@ -308,9 +269,7 @@ for(let i =0; i < people.length; i++) {
 for(let i =0; i < people.length; i++) {
     var elements = people[i].lastName;
     console.log(elements);
-
 } 
-
 for(let i =0; i < people.length; i++) {
     var elements = people[i].gender;
     console.log(elements);
@@ -319,9 +278,7 @@ for(let i =0; i < people.length; i++) {
 for(let i =0; i < people.length; i++) {
     var elements = people[i].dob;
     console.log(elements);
-
 } 
-
 for(let i =0; i < people.length; i++) {
     var elements = people[i].height;
     console.log(elements);
@@ -330,13 +287,10 @@ for(let i =0; i < people.length; i++) {
 for(let i =0; i < people.length; i++) {
     var elements = people[i].weight;
     console.log(elements);
-
 } 
-
 for(let i =0; i < people.length; i++) {
     var elements = people[i].eyeColor;
     console.log(elements);
-
 } 
 for(let i =0; i < people.length; i++) {
     var elements = people[i].occupation;
@@ -346,13 +300,10 @@ for(let i =0; i < people.length; i++) {
 for(let i =0; i < people.length; i++) {
     var elements = people[i].parents;
     console.log(elements);
-
 } 
-
 for(let i =0; i < people.length; i++) {
     var elements = people[i].currentSpouse;
     console.log(elements);
-
 } 
  */
 
@@ -379,7 +330,6 @@ for(let i =0; i < people.length; i++) {
                     return true;
                 }
                 else return false;
-
             })
             return (landScaper);
         }
@@ -447,11 +397,7 @@ for(let i =0; i < people.length; i++) {
             return (politician);
         }
     
-
     }
    
 } 
-
 */
-
-
