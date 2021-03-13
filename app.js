@@ -1,29 +1,26 @@
 'use strict';
 
 function searchByName(){
+    // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
     let lastNameInput = document.forms['nameForm']['lname'].value;
 
-   
-    let fPeople = people.filter(function (person) {
+    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+    let filteredPeople = people.filter(function (person) {
         if(person.firstName === firstNameInput && person.lastName === lastNameInput){
             return true;
         }
         return false;
     });
-
-   
+    
+    // Rather than console logging, you need to append the filteredPeople to a table.
     if(filteredPeople.length > 0){
-
-        spamFillTable(fPeople);
-        document.getElementById("alertUnknown").innerHTML = "We found..."
-    
+        console.log(filteredPeople);
     }else{
-        document.getElementById("alertUnknown").innerHTML = "This person is not in our records. Try another name."
-
-    
+        console.log('Sorry, looks like there is no one with that name.');
     }
-}
+} 
+
 
 // Generates table and fills with data from const people
 function hafniumTable(data){
@@ -45,12 +42,39 @@ function hafniumTable(data){
             table.innerHTML += row;
     }
 }
+<<<<<<< HEAD
 
 
+=======
+function keywordSearchTable(data){
+    var table = document.getElementById('keywordTable');
+    for (var i=0; i < data.length; i++) {
+        var row = `     <tr> 
+                        <td>${data[i].id}</td>
+                        <td>${data[i].firstName}</td>
+                        <td>${data[i].lastName}</td>
+                        <td>${data[i].gender}</td>
+                        <td>${data[i].dob}</td>
+                        <td>${data[i].height}</td>
+                        <td>${data[i].weight}</td>
+                        <td>${data[i].eyeColor}</td>
+                        <td>${data[i].occupation}</td>
+                        <td>${data[i].parents}</td>
+                        <td>${data[i].currentSpouse}</td>
+                </tr>`;
+            table.innerHTML += row;
+    }
+}
+//hafniumTable(people);
+>>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 // End generate table
 
+// Hide Table
+function clearHafniumTable() {
+    document.getElementById('myTable').style.visibility = "hidden";
+}
 
-
+//Search By Key Word Inputs
 function searchByKeyWord(){
 
     let userInput = document.forms["keyWordForm"]["keyWords"].value  
@@ -78,13 +102,47 @@ function searchByKeyWord(){
         spamFillTable(filteredPeople)
         
     }
+<<<<<<< HEAD
     else hafniumTable(filteredPeople)
 
     
  
+=======
+    
+    else if (filteredPeople.length > 1){
+        keywordSearchTable(filteredPeople)
+        
+    }
+    else spamFillTable(filteredPeople)
+    
+}
+>>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 
+function spamFillTable(filteredPeople){
+    document.getElementById("id").innerHTML = filteredPeople[0].id
+    document.getElementById("firstName").innerHTML = filteredPeople[0].firstName
+    document.getElementById("lastName").innerHTML = filteredPeople[0].lastName
+    document.getElementById("gender").innerHTML = filteredPeople[0].gender
+    document.getElementById("dob").innerHTML = filteredPeople[0].dob
+    document.getElementById("height").innerHTML = filteredPeople[0].height
+    document.getElementById("weight").innerHTML = filteredPeople[0].weight
+    document.getElementById("eyeColor").innerHTML = filteredPeople[0].eyeColor
+    document.getElementById("occupation").innerHTML = filteredPeople[0].occupation
+    document.getElementById("parents").innerHTML = filteredPeople[0].parents
+    document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
 }
 
+<<<<<<< HEAD
+=======
+
+    function accountForParentsID(declaredAttributesArray, filteredPeople){
+        let parentArray = [];
+        for (let i = 0; i < declaredAttributesArray.length; i++){
+            
+            for(let j = 0; j < filteredPeople.length; j++){
+                if(declaredAttributesArray[i] == filteredPeople[j].parents[0] || declaredAttributesArray[i] == filteredPeople[j].parents[1]){
+                
+>>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 
 
 
@@ -292,52 +350,8 @@ function searchByLastName(declaredAttributesArray, filteredPeople){
 }
 
 
-    /* function GenerateTable(filteredPeople) {
-        //Build an array containing Customer records.
-        //Create a HTML Table element.
-        var table = document.createElement("TABLE");
-        table.border = "1";
-        //Get the count of columns.
-        var columnCount = 1;
- 
-        //Add the header row.
-        var row = table.insertRow(-1);
-  
-        //Add the data rows.
-        for (var i = 0; i < filteredPeople.length; i++) {
-          
-            //row = table.insertRow(-1);
-            for (var j = 0; j < columnCount; j++) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = "ID: "+filteredPeople[i].id + "\n " +"Full Name:\n"+ filteredPeople[i].firstName+" "+filteredPeople[i].lastName+"\n"+"Sex: "+filteredPeople[i].gender+"\n "+"DOB: "+filteredPeople[i].dob+"\n "+"Height: "+filteredPeople[i].height+"\n "+"Weight: "+filteredPeople[i].weight+"\n "+"Eye Color: "+filteredPeople[i].eyeColor+"\n "+"Job: "+filteredPeople[i].occupation+"\n "+"Parents: "+filteredPeople[i].parents[0]+" \n"+filteredPeople[1].parents[1]+"\n"+"Spouse: "+filteredPeople[i].currentSpouse
-               
-            }
-        }
- 
-        var dvTable = document.getElementById("dvTable");
-        dvTable.innerHTML = "";
-        dvTable.appendChild(table);
-    } */
+    
 
-
-
-
-
-/* function spamFillTable(filteredPeople){
-    document.getElementById("id").innerHTML = filteredPeople[0].id
-    document.getElementById("firstName").innerHTML = filteredPeople[0].firstName
-    document.getElementById("lastName").innerHTML = filteredPeople[0].lastName
-    document.getElementById("gender").innerHTML = filteredPeople[0].gender
-    document.getElementById("dob").innerHTML = filteredPeople[0].dob
-    document.getElementById("height").innerHTML = filteredPeople[0].height
-    document.getElementById("weight").innerHTML = filteredPeople[0].weight
-    document.getElementById("eyeColor").innerHTML = filteredPeople[0].eyeColor
-    document.getElementById("occupation").innerHTML = filteredPeople[0].occupation
-    document.getElementById("parents").innerHTML = filteredPeople[0].parents
-    document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
-}
-
- */
 
 
 
