@@ -4,11 +4,10 @@
 
 
 function searchByName(){
-    // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
     let lastNameInput = document.forms['nameForm']['lname'].value;
 
-    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+   
     let fPeople = people.filter(function (person) {
         if(person.firstName === firstNameInput && person.lastName === lastNameInput){
             return true;
@@ -16,7 +15,7 @@ function searchByName(){
         return false;
     });
 
-    // Rather than console logging, you need to append the filteredPeople to a table.
+   
     if(filteredPeople.length > 0){
 
         spamFillTable(fPeople);
@@ -33,7 +32,7 @@ function searchByName(){
 
 function searchByKeyWord(){
 
-    let userInput = document.forms["keyWordForm"]["keyWords"].value  //replace the " user input " for anything and test to see what works.
+    let userInput = document.forms["keyWordForm"]["keyWords"].value  
     
     
     let filteredPeople = people;
@@ -253,41 +252,6 @@ function searchByLastName(declaredAttributesArray, filteredPeople){
 }
 
 
-
-
-
-
-/* let declaredAttributesArray = declareAttributes(input);
-filteredPeople = searchByGender(declaredAttributesArray);
-filteredPeople = searchEyeColors(declaredAttributesArray);
-filteredPeople = searchByOccupation(declaredAttributesArray);
-filteredPeople = searchByDOB(declaredAttributesArray);
-filteredPeople = searchByHeight(declaredAttributesArray);
-filteredPeople = searchByWeight(declaredAttributesArray);
-filteredPeople = searchByID(declaredAttributesArray);
-filteredPeople = searchByFirstName(declaredAttributesArray);
-filteredPeople = searchByLastName(declaredAttributesArray);
-console.log(filteredPeople)
-if (filteredPeople.length == 1){
-    spamFillTable(filteredPeople)
-}else GenerateTable(); */
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let tags = ["id", "firstName", "lastName", "gender", "dob", "height", "weight", "eyeColor", "occupation", "parents", "currentSpouse"]
-
-
-
     function GenerateTable(filteredPeople) {
         //Build an array containing Customer records.
         //Create a HTML Table element.
@@ -317,7 +281,7 @@ if (filteredPeople.length == 1){
 
 let infoArray = [];
 
-/// PUT ALL FUNCTIONS BELOW SO THE CODE UP TOP LOOKS BRIEF AND ORDERLY------REDUCE CLUTTER ABOVE------
+
 
 
 function spamFillTable(filteredPeople){
@@ -389,12 +353,11 @@ for(let i =0; i < people.length; i++) {
 
 
 
-///  this above i'm trying to work with from this site
+///  
 //   https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
 
 
 
-//   cell.innerHTML = people[i].id + " " + people[i].firstName+" "+people[i].lastName+" "+people[i].gender+" "+people[i].dob+" "+people[i].height+" "+people[i].weight+" "+people[i].eyeColor+" "+people[i].occupation+" "+people[i].parents+" "+people[i].currentSpouse
 
 
 
