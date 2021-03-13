@@ -23,7 +23,11 @@ table, th, td {
     margin-bottom: 50px;
   }
 
-  #nameForm, #keyWordForm {
+  #nameForm {
+    border-bottom: 1px solid black;
+  }
+
+section.keywordContainer {
     border-bottom: 1px solid black;
   }
 .btn {
