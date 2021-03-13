@@ -43,6 +43,7 @@ function hafniumTable(data){
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
@@ -65,9 +66,22 @@ function keywordSearchTable(data){
             table.innerHTML += row;
     }
 }
+=======
+
+>>>>>>> b304294c0436d8660fbe12d1bc0505f181df99cf
 //hafniumTable(people);
 >>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 // End generate table
+
+document.getElementById("nameForm")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("formButton").click();
+    }
+});
+
+
 
 // Hide Table
 function clearHafniumTable() {
@@ -110,10 +124,10 @@ function searchByKeyWord(){
 =======
     
     else if (filteredPeople.length > 1){
-        keywordSearchTable(filteredPeople)
+        hafniumTable(filteredPeople)
         
     }
-    else spamFillTable(filteredPeople)
+    else hafniumTable(filteredPeople)
     
 }
 >>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
