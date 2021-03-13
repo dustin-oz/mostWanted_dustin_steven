@@ -140,92 +140,23 @@ function searchEyeColors(declaredAttributesArray){
 
 }
 
-function searchByOccupation(declaredAttributesArray){
-    for (let i = 0; i < declaredAttributesArray.length; i++){
-        if (declaredAttributesArray[i].includes("landscaper")){
-            let landScaper = filteredPeople.filter(function (person){
-                if (person.occupation == "landscaper"){
-                    return true;
-                }
-                else return false;
-
-            })
-            return (landScaper);
-        }
-        if (declaredAttributesArray[i].includes("assistant")){
-            let assistant = filteredPeople.filter(function (person){
-                if (person.occupation == "assistant"){
-                    return true;
-                }
-                else return false;
-            })
-            return (assistant);
-        }
-        if (declaredAttributesArray[i].includes("programmer")){
-            let programmer = filteredPeople.filter(function (person){
-                if (person.occupation == "programmer"){
-                    return true;
-                }
-                else return false;
-            })
-            return (programmer);
-        }
-        if (declaredAttributesArray[i].includes("nurse")){
-            let nurse = filteredPeople.filter(function (person){
-                if (person.occupation == "nurse"){
-                    return true;
-                }
-                else return false;
-            })
-            return (nurse);
-        }
-        if (declaredAttributesArray[i].includes("student")){
-            let student = filteredPeople.filter(function (person){
-                if (person.occupation == "student"){
-                    return true;
-                }
-                else return false;
-            })
-            return (student);
-        }
-        if (declaredAttributesArray[i].includes("architect")){
-            let architect = filteredPeople.filter(function (person){
-                if (person.occupation == "architect"){
-                    return true;
-                }
-                else return false;
-            })
-            return (architect);
-        }
-        if (declaredAttributesArray[i].includes("doctor")){
-            let doctor = filteredPeople.filter(function (person){
-                if (person.occupation == "doctor"){
-                    return true;
-                }
-                else return false;
-            })
-            return (doctor);
-        }
-        if (declaredAttributesArray[i].includes("politician")){
-            let politician = filteredPeople.filter(function (person){
-                if (person.occupation == "politician"){
-                    return true;
-                }
-                else return false;
-            })
-            return (politician);
-        }
-    
-
-    }
-   
-}
 
 /// Dang, I think I just realized I could have done a nested forloop..
- if(declaredAttributesArray[i].includes(filteredPeople[j].occupation))
+ //     if(declaredAttributesArray[i].includes(filteredPeople[j].occupation))
 /// will work on that tomorrow...
+    function searchByOccupation(declaredAttributesArray){
+        let matchingJobs = [];
+        for (let i = 0; i < declaredAttributesArray.length; i++){
 
+            for (let j = 0; j < filteredPeople.length; j++)
+            if (declaredAttributesArray[i] == filteredPeople[j].occupation){
+                matchingJobs.push(filteredPeople[j]); 
 
+            }
+        }   
+        return matchingJobs;    
+            
+    }   
 
 let declaredAttributesArray = declareAttributes(input);
 let filteredPeople = declareGender(declaredAttributesArray);
@@ -437,6 +368,90 @@ for(let i =0; i < people.length; i++) {
 
 
 
-/// ATTENTION:  never used functions below. In case you want to save for later or stealing pieces from them.
+/// BRBO.. this was the "searchByOccupation" function I Had.. BEFORE i reduced it, lol... 
+
+/*
+ function searchByOccupation(declaredAttributesArray){
+    for (let i = 0; i < declaredAttributesArray.length; i++){
+        if (declaredAttributesArray[i].includes("landscaper")){
+            let landScaper = filteredPeople.filter(function (person){
+                if (person.occupation == "landscaper"){
+                    return true;
+                }
+                else return false;
+
+            })
+            return (landScaper);
+        }
+        if (declaredAttributesArray[i].includes("assistant")){
+            let assistant = filteredPeople.filter(function (person){
+                if (person.occupation == "assistant"){
+                    return true;
+                }
+                else return false;
+            })
+            return (assistant);
+        }
+        if (declaredAttributesArray[i].includes("programmer")){
+            let programmer = filteredPeople.filter(function (person){
+                if (person.occupation == "programmer"){
+                    return true;
+                }
+                else return false;
+            })
+            return (programmer);
+        }
+        if (declaredAttributesArray[i].includes("nurse")){
+            let nurse = filteredPeople.filter(function (person){
+                if (person.occupation == "nurse"){
+                    return true;
+                }
+                else return false;
+            })
+            return (nurse);
+        }
+        if (declaredAttributesArray[i].includes("student")){
+            let student = filteredPeople.filter(function (person){
+                if (person.occupation == "student"){
+                    return true;
+                }
+                else return false;
+            })
+            return (student);
+        }
+        if (declaredAttributesArray[i].includes("architect")){
+            let architect = filteredPeople.filter(function (person){
+                if (person.occupation == "architect"){
+                    return true;
+                }
+                else return false;
+            })
+            return (architect);
+        }
+        if (declaredAttributesArray[i].includes("doctor")){
+            let doctor = filteredPeople.filter(function (person){
+                if (person.occupation == "doctor"){
+                    return true;
+                }
+                else return false;
+            })
+            return (doctor);
+        }
+        if (declaredAttributesArray[i].includes("politician")){
+            let politician = filteredPeople.filter(function (person){
+                if (person.occupation == "politician"){
+                    return true;
+                }
+                else return false;
+            })
+            return (politician);
+        }
+    
+
+    }
+   
+} 
+
+*/
 
 
