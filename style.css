@@ -1,39 +1,39 @@
 table, th, td {
-    border: 1px solid black;
-  }
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+}
+
+#dvTable {
+  overflow-x:auto;
   
-  th, td {
-    padding: 10px;
-  }
+}
 
-  #dvTable {
-    overflow-x:auto;
-    
-  }
+form {
+  padding: 20px 40px 20px 40px;
+}
+#fname, #lname {
+  margin-bottom: 15px;
+}
 
-  form {
-    padding: 20px 40px 20px 40px;
-  }
-  #fname, #lname {
-    margin-bottom: 15px;
-  }
+table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
-  table {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-
-  #nameForm {
-    border-bottom: 1px solid black;
-  }
+#nameForm {
+  border-bottom: 1px solid black;
+}
 
 section.keywordContainer {
-    border-bottom: 1px solid black;
-  }
+  border-bottom: 1px solid black;
+}
 .btn {
-  margin: 15px;
+margin: 15px;
 }
 
 body {
-  margin: 15px;
+margin: 15px;
 }

@@ -42,35 +42,8 @@ function hafniumTable(data){
             table.innerHTML += row;
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-=======
-function keywordSearchTable(data){
-    var table = document.getElementById('keywordTable');
-    for (var i=0; i < data.length; i++) {
-        var row = `     <tr> 
-                        <td>${data[i].id}</td>
-                        <td>${data[i].firstName}</td>
-                        <td>${data[i].lastName}</td>
-                        <td>${data[i].gender}</td>
-                        <td>${data[i].dob}</td>
-                        <td>${data[i].height}</td>
-                        <td>${data[i].weight}</td>
-                        <td>${data[i].eyeColor}</td>
-                        <td>${data[i].occupation}</td>
-                        <td>${data[i].parents}</td>
-                        <td>${data[i].currentSpouse}</td>
-                </tr>`;
-            table.innerHTML += row;
-    }
-}
-=======
-
->>>>>>> b304294c0436d8660fbe12d1bc0505f181df99cf
 //hafniumTable(people);
->>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 // End generate table
 
 document.getElementById("nameForm")
@@ -108,20 +81,12 @@ function searchByKeyWord(){
     filteredPeople = searchByFirstName(declaredAttributesArray, filteredPeople);
     filteredPeople = searchByLastName(declaredAttributesArray, filteredPeople);
     filteredPeople = searchByID(declaredAttributesArray, filteredPeople);
-    filteredPeople = filtereDuplicates(filteredPeople);
-
     if (filteredPeople.length == 22){
         
         alert("No match")
         spamFillTable(filteredPeople)
         
     }
-<<<<<<< HEAD
-    else hafniumTable(filteredPeople)
-
-    
- 
-=======
     
     else if (filteredPeople.length > 1){
         hafniumTable(filteredPeople)
@@ -130,7 +95,6 @@ function searchByKeyWord(){
     else hafniumTable(filteredPeople)
     
 }
->>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 
 function spamFillTable(filteredPeople){
     document.getElementById("id").innerHTML = filteredPeople[0].id
@@ -146,8 +110,6 @@ function spamFillTable(filteredPeople){
     document.getElementById("currentSpouse").innerHTML = filteredPeople[0].currentSpouse
 }
 
-<<<<<<< HEAD
-=======
 
     function accountForParentsID(declaredAttributesArray, filteredPeople){
         let parentArray = [];
@@ -156,53 +118,26 @@ function spamFillTable(filteredPeople){
             for(let j = 0; j < filteredPeople.length; j++){
                 if(declaredAttributesArray[i] == filteredPeople[j].parents[0] || declaredAttributesArray[i] == filteredPeople[j].parents[1]){
                 
->>>>>>> c68b4cf3d7b190c0ada847ed6941f681e1095143
 
+                    if (filteredPeople[j].parents.length > 1){
+                        parentArray.push(filteredPeople[j].parents[0]);
+                        parentArray.push(filteredPeople[j].parents[1]);
 
-
-
-
-
-
-function accountForParentsID(declaredAttributesArray, filteredPeople){
-    let parentArray = [];
-    for (let i = 0; i < declaredAttributesArray.length; i++){
-        
-        for(let j = 0; j < filteredPeople.length; j++){
-            if(declaredAttributesArray[i] == filteredPeople[j].parents[0] || declaredAttributesArray[i] == filteredPeople[j].parents[1]){
-            
-
-                if (filteredPeople[j].parents.length > 1){
-                    parentArray.push(filteredPeople[j].parents[0]);
-                    parentArray.push(filteredPeople[j].parents[1]);
+                    }
+                    else parentArray.push(filteredPeople[j].parents[0]);
 
                 }
-                else parentArray.push(filteredPeople[j].parents[0]);
+
 
             }
-
-
-        }
-    
-    }
-    let attributeAddition = declaredAttributesArray.concat(parentArray);
-    return attributeAddition;
-    
-
-}
-
-function filtereDuplicates(filteredPeople){
-    for(let i = 0; i < filteredPeople.length; i++){
-        for(let j = 1; j < filteredPeople.length; j++){
-            if (filteredPeople[i].id === filteredPeople[j].id){
-                filteredPeople.pop(filteredPeople[j]);
-            }
-            
-        }
         
+        }
+        let attributeAddition = declaredAttributesArray.concat(parentArray);
+        return attributeAddition;
+        
+    
     }
-    return filteredPeople;
-}
+
 
 
 function searchByGender(declaredAttributesArray, filteredPeople) {
@@ -365,7 +300,6 @@ function searchByLastName(declaredAttributesArray, filteredPeople){
 
 
     
-
 
 
 
