@@ -65,15 +65,10 @@ function clearHafniumTable() {
 
 //Search By Key Word Inputs
 function searchByKeyWord(){
-
     let userInput = document.forms["keyWordForm"]["keyWords"].value  
-    
-    
     let filteredPeople = people;
     let declaredAttributesArray = userInput.split(" ");
-    
 
-    
     filteredPeople = searchByGender(declaredAttributesArray, filteredPeople);
     filteredPeople = searchEyeColors(declaredAttributesArray, filteredPeople);
     filteredPeople = searchByOccupation(declaredAttributesArray, filteredPeople);
@@ -86,19 +81,14 @@ function searchByKeyWord(){
     filteredPeople = findRelatives(declaredAttributesArray, filteredPeople);
     filteredPeople = filterDuplicates(filteredPeople);
     if (filteredPeople.length == 22){
-        
-        alert("No match")
-        clearHafniumTable();
-        
+        alert("No match")   
     }
     
-    else if (filteredPeople.length > 1){
-        hafniumTable(filteredPeople)
-        
+    else if (filteredPeople.length > 1){ 
+        hafniumTable(filteredPeople)   
     }
     else hafniumTable(filteredPeople)
-    
-    
+
 }
 
 
@@ -110,17 +100,18 @@ function findRelatives(declaredAttributesArray, filteredPeople){
         if (declaredAttributesArray[i].includes("parents")){
             filteredPeople = matchChildToParents(filteredPeople);
         }
-        if (declaredAttributesArray[i].includes("brothers" || "siblings" || "sisters")){
+        // the reason I have parents in sibling search is because, there are no sibling tags, so you have to search parents first to find matching children.
+        if (declaredAttributesArray[i].includes("brothers") || declaredAttributesArray[i].includes("sisters") || declaredAttributesArray[i].includes("siblings")){
             filteredPeople = matchChildToParents(filteredPeople);
             filteredPeople = findSiblings(filteredPeople);
         }
-        if (declaredAttributesArray[i].includes("spouse" || "wife" || "husband")){
+        if (declaredAttributesArray[i].includes("spouse") || declaredAttributesArray[i].includes("wife") || declaredAttributesArray[i].includes("husband")){
             filteredPeople = findSpouse(filteredPeople);
         }
-        if (declaredAttributesArray[i].includes("family" || "relatives")){
+        if (declaredAttributesArray[i].includes("family") || declaredAttributesArray[i].includes("relatives")) {
             filteredPeople = findSpouse(filteredPeople);
-            filteredPeople = findSiblings(filteredPeople);
             filteredPeople = matchChildToParents(filteredPeople);
+            filteredPeople = findSiblings(filteredPeople);
         }
         
 
@@ -140,15 +131,11 @@ function findSpouse(filteredPeople) {
     let family = [];
     let bastards = [];
     for(let j = 0; j < filteredPeople.length; j++) {
-        for (let i = 0; i < people.length; i++){
+        for (let i = 10; i < people.length; i++){
            
-            if (filteredPeople[j].id == people[i].spouse){
+            if (filteredPeople[j].currentSpouse == people[i].id){
                 console.log(people[i].parents[0]);
                 family.push(people[i]);
-            }
-            if (filteredPeople[j].id == people[i].spouse){
-                console.log(people[i])
-                family.push(people[i])
             }
             else bastards.push[people[i]]
       
@@ -268,10 +255,10 @@ function searchByOccupation(declaredAttributesArray, filteredPeople){
 
         }
     }   
-    if (matchingJobs.length < 1){
-        return filteredPeople;
+    if (matchingJobs.length > 1){
+        return matchingJobs;
     }
-    else return matchingJobs;
+    else return filteredPeople;
         
 }   
 
