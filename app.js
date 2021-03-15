@@ -100,7 +100,7 @@ function findRelatives(declaredAttributesArray, filteredPeople){
         if (declaredAttributesArray[i].includes("parents")){
             filteredPeople = matchChildToParents(filteredPeople);
         }
-        // the reason I have parents in sibling search is because, there are no sibling tags, so you have to search parents first to find matching children.
+        //there are no sibling tags, so you have to search parents first to find matching children.
         if (declaredAttributesArray[i].includes("brothers") || declaredAttributesArray[i].includes("sisters") || declaredAttributesArray[i].includes("siblings")){
             filteredPeople = matchChildToParents(filteredPeople);
             filteredPeople = findSiblings(filteredPeople);
@@ -120,12 +120,6 @@ function findRelatives(declaredAttributesArray, filteredPeople){
 
 
 } 
-// havent tested any of this yet above...
-
-
-
-
-
 
 function findSpouse(filteredPeople) {
     let family = [];
@@ -164,14 +158,9 @@ function findSiblings(filteredPeople) {
                 family.push(people[i])
             }
             else bastards.push[people[i]]
-      
         }
-
     }
-    return family.concat(filteredPeople);
-        
-    
-
+    return family.concat(filteredPeople);       
 }
 
 
@@ -192,14 +181,9 @@ function matchChildToParents(filteredPeople) {
                 family.push(people[i])
             }
             else bastards.push[people[i]]
-      
         }
-
     }
-    return family.concat(filteredPeople);
-        
-    
-
+    return family.concat(filteredPeople);      
 }
 
 
@@ -222,9 +206,7 @@ function searchByGender(declaredAttributesArray, filteredPeople) {
     if (matchingGender.length < 1){
         return filteredPeople;
     }
-    else return matchingGender;
-    
-        
+    else return matchingGender;     
 }
 
 function searchEyeColors(declaredAttributesArray, filteredPeople){
@@ -252,15 +234,14 @@ function searchByOccupation(declaredAttributesArray, filteredPeople){
         for (let j = 0; j < filteredPeople.length; j++)
         if (declaredAttributesArray[i] == filteredPeople[j].occupation){
             matchingJobs.push(filteredPeople[j]); 
-
         }
     }   
     if (matchingJobs.length > 1){
         return matchingJobs;
     }
-    else return filteredPeople;
-        
+    else return filteredPeople;       
 }   
+
 
 function searchByDOB(declaredAttributesArray, filteredPeople){
     let matchingDOB = [];
@@ -268,15 +249,13 @@ function searchByDOB(declaredAttributesArray, filteredPeople){
 
         for(let j = 0; j < filteredPeople.length; j++)
         if (declaredAttributesArray[i] == filteredPeople[j].dob){
-            matchingDOB.push(filteredPeople[j])
-            
+            matchingDOB.push(filteredPeople[j])   
         }
     }
     if (matchingDOB.length < 1){
         return filteredPeople;
     }
     else return matchingDOB;
-
 }
 
 function searchByHeight(declaredAttributesArray, filteredPeople){
@@ -285,8 +264,7 @@ function searchByHeight(declaredAttributesArray, filteredPeople){
 
         for(let j = 0; j < filteredPeople.length; j++)
         if (declaredAttributesArray[i] == filteredPeople[j].height){
-            matchingHeight.push(filteredPeople[j])
-            
+            matchingHeight.push(filteredPeople[j])    
         }
     }
     if (matchingHeight.length < 1){
