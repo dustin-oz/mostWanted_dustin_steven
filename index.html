@@ -38,10 +38,12 @@
     <form id="nameForm">
         <label for="fname">First name:</label><br>
           <input type="text" id="fname" name="fname" value="Joy"><br>
-        <label for="lname">Last name:</label><br>
+          <label for="lname">Last name:</label><br>
           <input type="text" id="lname" name="lname" value="Madden"><br><br>
           <input class="btn btn-primary" id ="formButton" type="button" onclick="searchByName()" enter="submit" value="Submit">
-    </form> 
+          <p class="form-control error"></p>
+          <p class="form-control success"></p>
+        </form> 
   </div>
 
   <div id="keySection" class="keywordSearchSection sections">
@@ -80,6 +82,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="data.js"></script>
+    <script src="auth.js"></script>
     <script src="app.js"></script>
 
   </body>
