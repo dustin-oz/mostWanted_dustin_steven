@@ -40,6 +40,8 @@ function hafniumTable(data){
                         <td>${data[i].occupation}</td>
                         <td>${data[i].parents}</td>
                         <td>${data[i].currentSpouse}</td>
+                        <button type="button" onclick="displayLineage(${data[i].id})"> Find Descendants </button>
+                        <button type="button" onclick="findImmediateFamily(${data[i].id}, ${data[i].parents[0]}, ${data[i].parents[1]})"> Find Immediate Family </button>
                 </tr>`;
             table.innerHTML += row;
     }
@@ -90,6 +92,113 @@ function searchByKeyWord(){
     else hafniumTable(filteredPeople)
 
 }
+
+function findLineage(parentID){
+    let filteredPeople = [];
+    for (let i = 0; i < people.length; i++){
+        if (parentID == people[i].id){
+            filteredPeople.push(people[i]);
+        }
+    }
+    
+    filteredPeople = searchByID(parentID, filteredPeople);
+    filteredPeople = matchChildToParents(filteredPeople);
+    filteredPeople = findSiblings(filteredPeople);
+    filteredPeople = matchChildToParents(filteredPeople);
+    filteredPeople = filterDuplicates(filteredPeople);
+    hafniumTable(filteredPeople);
+
+}
+
+
+
+
+
+function findImmediateFamily(rootID, parent1, parent2){
+    let immediateFamily = [];
+    let parents = [];
+    parents.push(parent1);
+    parents.push(parent2);
+    for (let i = 0; i < people.length; i++){
+
+
+        //find wife
+        if (rootID == people[i].currentSpouse){
+            immediateFamily.push(people[i]);
+        }
+        // find children
+        if (rootID == people[i].parents[0] || rootID == people[i].parents[1]){
+        immediateFamily.push(people[i]);
+         }
+         // fing siblings or parents
+        if (typeof parents[0] != 'undefined' && parents.length > 0){
+
+            if (parents[0] == people[i].parents[0] || parents[0] == people[i].id){
+                immediateFamily.push(people[i])
+            }
+    
+            if (parents.length > 1 && typeof parents[1] != 'undefined'){
+                if (parents[1] == people[i].parents[1] || parents[1] == people[i].id){
+                    immediateFamily.push(people[i])
+                }
+    
+            }
+
+        }
+        
+
+    }
+    immediateFamily = filterDuplicates(immediateFamily);
+    hafniumTable(immediateFamily);
+
+}
+
+
+// MY FAILED RECURSION I CANNOT FIGURE OUT>... REMEMBER TO ADD ${data[i].id , ${people} into button line 43 if you want to work on this below...
+
+
+function displayLineage(parents){
+    let parent = [];
+    parent.push(parents);
+    let lineage = findDescendants(parent);
+    
+    hafniumTable(lineage);
+}
+ 
+
+
+function findDescendants(parent){
+let descendants = [];
+    if (parent.length < 2){
+        for (let i = 0; i < people.length; i++){
+            if (parent == people[i].parents[0] || parent == people[i].parents[1]){
+                descendants.push(people[i]);
+
+            }
+
+        }
+        findDescendants(descendants);
+    }
+    else {
+        let j = 0;
+        while (j < parent.length){
+            for (let z = 0; z < people.length; z++){
+                if (parent[j].id == people[z].parents[0] || parent[j].id == people[z].parents[1]){
+                    parent.push(people[z]);
+
+                }
+
+            }
+            j++;
+        }
+    
+    
+        return descendants.concat(parent);
+    }
+    return descendants;
+    
+}
+
 
 
 
