@@ -40,22 +40,29 @@ function hafniumTable(data){
                         <td>${data[i].occupation}</td>
                         <td>${data[i].parents}</td>
                         <td>${data[i].currentSpouse}</td>
+                        <button type="button" onclick="displayLineage(${data[i].id})"> Find Descendants </button>
+                        <button type="button" onclick="findImmediateFamily(${data[i].id}, ${data[i].parents[0]}, ${data[i].parents[1]})"> Find Immediate Family </button>
                 </tr>`;
             table.innerHTML += row;
     }
 }
 
+
+
+
+
 //hafniumTable(people);
 // End generate table
 
-document.getElementById("nameForm")
+/* document.getElementById("nameForm")
     .addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         document.getElementById("formButton").click();
     }
 });
-
+ */
+// I delted nameForm so this isn't necessary anymore.
 
 
 // Hide Table
@@ -91,6 +98,119 @@ function searchByKeyWord(){
 
 }
 
+// function findLineage(parentID){
+//     let filteredPeople = [];
+//     for (let i = 0; i < people.length; i++){
+//         if (parentID == people[i].id){
+//             filteredPeople.push(people[i]);
+//         }
+//     }
+    
+//     filteredPeople = searchByID(parentID, filteredPeople);
+//     filteredPeople = matchChildToParents(filteredPeople);
+//     filteredPeople = findSiblings(filteredPeople);
+//     filteredPeople = matchChildToParents(filteredPeople);
+//     filteredPeople = filterDuplicates(filteredPeople);
+//     hafniumTable(filteredPeople);
+
+// }
+
+// replaced the above function for a recursive one.
+
+
+
+
+function findImmediateFamily(rootID, parent1, parent2){
+    let immediateFamily = [];
+    let parents = [];
+    parents.push(parent1);
+    parents.push(parent2);
+    for (let i = 0; i < people.length; i++){
+
+
+        //find wife
+        if (rootID == people[i].currentSpouse){
+            immediateFamily.push(people[i]);
+        }
+        // find children
+        if (rootID == people[i].parents[0] || rootID == people[i].parents[1]){
+        immediateFamily.push(people[i]);
+         }
+         // fing siblings or parents
+        if (typeof parents[0] != 'undefined' && parents.length > 0){
+
+            if (parents[0] == people[i].parents[0] || parents[0] == people[i].id){
+                immediateFamily.push(people[i])
+            }
+    
+            if (parents.length > 1 && typeof parents[1] != 'undefined'){
+                if (parents[1] == people[i].parents[1] || parents[1] == people[i].id){
+                    immediateFamily.push(people[i])
+                }
+    
+            }
+
+        }
+        
+
+    }
+    immediateFamily = filterDuplicates(immediateFamily);
+    hafniumTable(immediateFamily);
+
+}
+
+
+
+
+
+function displayLineage(parents){
+    let parent = [];
+    parent.push(parents);
+    let lineage = findDescendants(parent);
+    if (lineage.length < 1){
+        alert("No descendants")   
+    }
+    else hafniumTable(lineage);
+}
+ 
+
+// BONUS RECURSION BELOW
+
+function findDescendants(parent){
+let descendants = [];
+    if (parent.length > 0){
+        if (parent[0].id == undefined){
+            for (let i = 0; i < people.length; i++){
+                if (parent == people[i].parents[0] || parent == people[i].parents[1]){
+                    descendants.push(people[i]);
+
+                }
+
+            }
+            findDescendants(descendants);
+        }
+    }
+    else {
+        let j = 0;
+        while (j < parent.length){
+            for (let z = 0; z < people.length; z++){
+                if (parent[j].id == people[z].parents[0] || parent[j].id == people[z].parents[1]){
+                    parent.push(people[z]);
+
+                }
+
+            }
+            j++;
+        }
+    
+    
+        descendants.concat(parent);
+    }
+    return descendants;
+    
+}
+
+
 
 
 
@@ -112,6 +232,12 @@ function findRelatives(declaredAttributesArray, filteredPeople){
             filteredPeople = findSpouse(filteredPeople);
             filteredPeople = matchChildToParents(filteredPeople);
             filteredPeople = findSiblings(filteredPeople);
+            filteredPeople = findSpouse(filteredPeople);
+            filteredPeople = matchChildToParents(filteredPeople);
+            filteredPeople = findSiblings(filteredPeople);
+            filteredPeople = findSpouse(filteredPeople);
+            filteredPeople = matchChildToParents(filteredPeople);
+
         }
         
 
@@ -125,7 +251,7 @@ function findSpouse(filteredPeople) {
     let family = [];
     let bastards = [];
     for(let j = 0; j < filteredPeople.length; j++) {
-        for (let i = 10; i < people.length; i++){
+        for (let i = 0; i < people.length; i++){
            
             if (filteredPeople[j].currentSpouse == people[i].id){
                 console.log(people[i].parents[0]);
@@ -236,7 +362,7 @@ function searchByOccupation(declaredAttributesArray, filteredPeople){
             matchingJobs.push(filteredPeople[j]); 
         }
     }   
-    if (matchingJobs.length > 1){
+    if (matchingJobs.length > 0){
         return matchingJobs;
     }
     else return filteredPeople;       
