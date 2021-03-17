@@ -345,5 +345,4 @@ function searchByLastName(declaredAttributesArray, filteredPeople){
     else return matchingLName;
 }
 
-
     
