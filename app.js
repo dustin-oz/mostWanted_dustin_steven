@@ -72,7 +72,7 @@ function hafniumTable(data){
 
 //Search By Key Word Inputs
 function searchByKeyWord(){
-    let userInput = document.forms["keyWordForm"]["keyWords"].value  
+    let userInput = document.forms["keyWordForm"]["keyWords"].value.toLowerCase()
     let filteredPeople = people;
     let declaredAttributesArray = userInput.split(" ");
 
